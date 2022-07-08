@@ -26,6 +26,9 @@ module.exports = {
   "/validate": {
     controller: validate,
     skip: true,
-    next: "/oauth2/callback",
+    next: validate.prototype.next,
   },
+  "/retry": {
+    next: "details",
+  }
 };

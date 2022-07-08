@@ -5,7 +5,7 @@ const { API_BASE_URL, API_AUTHORIZE_PATH } = require("../../../lib/config");
 const logger = require("hmpo-logger").get();
 
 class ValidateController extends BaseController {
-  async saveValues(req, res, next) {
+  async saveValues(req, res, callback) {
     const firstName = req.sessionModel.get("firstName");
     const middleNames = req.sessionModel.get("middleNames");
     const forenames =
@@ -43,23 +43,36 @@ class ValidateController extends BaseController {
       const code = apiResponse?.data?.code?.value;
 
       super.saveValues(req, res, () => {
-        if (!code) {
-          const error = {
-            error: "server_error",
-            error_description: "Failed to retrieve authorization code",
-          };
-          req.sessionModel.set("error", error);
-          next();
-        } else {
+
+        const isValid = apiResponse.data.isValidPassport;
+
+        if (!isValid) {
+          req.session.isValidPassport = false;
+          const retryCount = req.session.retryCount ?? 0;
+          logger.info("retryCount : " + retryCount);
+          req.session.retryCount = retryCount + 1;
+
           req.sessionModel.set("authorization_code", code);
-          next();
+
+          callback();
+        } else {
+          req.session.isValidPassport = true;
+          req.sessionModel.set("authorization_code", code);
         }
+
+        const error = {
+          error: "server_error",
+          error_description: "Failed to retrieve authorization code",
+        };
+        req.sessionModel.set("error", error);
+        callback();
+
       });
     } catch (error) {
       logger.error("error thrown in validate controller", { req, res, error });
       super.saveValues(req, res, () => {
         req.sessionModel.set("error", error.response.data);
-        next();
+        callback();
       });
     }
   }
@@ -71,6 +84,19 @@ class ValidateController extends BaseController {
         .map((key) => key + "=" + authParams[key])
         .join("&")
     );
+  }
+
+  next(req) {
+    const isValidPassport = req.session.isValidPassport;
+    const retryCount = req.session.retryCount;
+
+    if (!isValidPassport && retryCount <= 2) {
+      logger.info("Next is retry");
+      return "retry"
+    } else {
+      logger.info("Next is callback");
+      return "/oauth2/callback"
+    }
   }
 }
 

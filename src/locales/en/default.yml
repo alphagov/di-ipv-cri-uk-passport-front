@@ -45,3 +45,7 @@ passport:
   passportInformationContext: Your passport includes a lot of information that we can check to make sure that you are who you say you are.
   checkDetailsContext: We'll check your details with the HM Passport Office to make sure your passport has not been cancelled or reported as lost  or stolen.
   passportGivenNames: Given names
+retry:
+  title: Retry example
+  serviceNameRequired: true
+  retryContext: Need to try passport cri again

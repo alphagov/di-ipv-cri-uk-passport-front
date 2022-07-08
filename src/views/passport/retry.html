@@ -1,0 +1,29 @@
+{% extends "shared/ipv-template.html" %}
+{# the content for this page is controlled by locales/en/default.yml #}
+{% set hmpoPageKey = "retry" %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "hmpo-text/macro.njk" import hmpoText %}
+{% from "hmpo-form/macro.njk" import hmpoForm %}
+{% from "hmpo-date/macro.njk" import hmpoDate %}
+
+
+{% block mainContent %}
+    <h1 class="govuk-heading-l">
+        {{ translate("retry.title") }}
+    </h1>
+    <p> {{ translate("retry.retryContext") }} </p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+
+{# generate the specific footer items required for the PYI flows #}
+{% set footerNavItems = translate("govuk.footerNavItems") %}
+
+{% block footer %}
+    {{ govukFooter( footerNavItems ) }}
+{% endblock %}
