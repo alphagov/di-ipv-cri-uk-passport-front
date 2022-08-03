@@ -542,10 +542,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@*, aws-sdk@^2.1182.0:
-  version "2.1182.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1182.0.tgz#7364e3e104f62b61018a00f19f2ffc989b1780ed"
-  integrity sha512-iemVvLTc2iy0rz3xTp8zc/kD27gIfDF/mk6bxY8/35xMulKCVANWUkAH8jWRKReHh5F/gX4bp33dnfG63ny1Ww==
+aws-sdk@*, aws-sdk@^2.1187.0:
+  version "2.1187.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1187.0.tgz#eb928d64305630f53b8f6dad5c7b91fec8f04622"
+  integrity sha512-QcxQ3asIhH9QQnN/5JO3MaHRjwcy3/AsBzcAjPU+lHZGV0drnuDmg3ZkZuAa/mOgQ3MEi68G3gYD+481QJgnMg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -1893,10 +1893,10 @@ hmpo-app@2.3.0:
     underscore "^1.13.4"
     uuid "^8.3.2"
 
-hmpo-components@5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/hmpo-components/-/hmpo-components-5.3.2.tgz#e4dbb48deed5e1303a39a14645ad455c546ff807"
-  integrity sha512-ijHg1XRz3bjhV5lXqBqCrH8kuNLfQKodbtLDi7mpM5+u326C9L4/HmjLC2eMtA7PDcDgX8hPr3XWfRnYkF6LuA==
+hmpo-components@5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/hmpo-components/-/hmpo-components-5.4.0.tgz#9741a4d75a3720b4a9228ea737bece1b292077e8"
+  integrity sha512-r90KLgJipUYdDTmRU1vRGoXJg8ldgFQP88lxjDAzpdE3e8zd+KI8jpFpMLZafI9VTwKOQdcMfPiA1bOmG6ptFA==
   dependencies:
     deep-clone-merge "^1.5.4"
     moment "^2.29.3"
